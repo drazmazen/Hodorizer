@@ -1,0 +1,15 @@
+﻿<Window x:Class="Hodor.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Button Click="Button_Click">
+                Hodorize
+            </Button>
+            <Button Click="Button_Click_1">
+                Dehodorize
+            </Button>
+        </StackPanel>        
+    </Grid>
+</Window>
