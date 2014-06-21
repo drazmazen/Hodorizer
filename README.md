@@ -5,7 +5,8 @@ Wcf service hosted in a windows service. It intercepts all keyboard input from u
 
 About
 =====
-This little weekend project actually started because I wanted to pull a prank on my wife, so that's why the projects are quick and dirty without any code refactoring or design patterns or best practices.
+This little weekend project actually started because I wanted to pull a prank on my wife, so the code is quick and dirty without any refactoring, design patterns or best practices.
+It uses the [interception.dll](http://oblita.com/interception.html) c++ library to intercept keyboard input. See [here](https://gist.github.com/candera/1959219#file-interception-xy-cs) to see how to wrap the library with c#.
 Included folders are as follows:
  - CSharpHodor: the console app I made as a proof of concept
  - Hodor.Interception: the class library project that's just a c# wrapper for a c++ library interception.dll
