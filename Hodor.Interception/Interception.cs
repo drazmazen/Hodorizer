@@ -28,6 +28,10 @@ namespace Hodor.Libraries
             public static ushort Backspace = 14;
             public static ushort Escape = 0x01;
             public static ushort Enter = 28;
+            public static ushort LeftShift = 42;
+            public static ushort RightShift = 54;
+            public static ushort Alt = 56;
+            public static ushort Control = 29;
         }
 
 

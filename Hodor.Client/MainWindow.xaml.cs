@@ -21,7 +21,7 @@ namespace Hodor.Client
     /// </summary>
     public partial class MainWindow : Window
     {
-        HodorServiceClient svc = new HodorServiceClient("BasicHttpBinding_IHodorService");
+        HodorServiceClient svc = new HodorServiceClient("netTcpEndpoint");
         public MainWindow()
         {
             InitializeComponent();

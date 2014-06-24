@@ -18,7 +18,7 @@ namespace Hodor.Service
         int device;
         Interception.Stroke stroke = new Interception.Stroke();
         List<ushort> hodorList = new List<ushort>() { ScanCode.H, ScanCode.O, ScanCode.D, ScanCode.O, ScanCode.R, ScanCode.Space };
-        List<ushort> passKeysList = new List<ushort>() { ScanCode.Backspace, ScanCode.Enter };
+        List<ushort> passKeysList = new List<ushort>() { ScanCode.Backspace, ScanCode.Enter, ScanCode.Escape, ScanCode.LeftShift, ScanCode.RightShift, ScanCode.Alt, ScanCode.Control };
 
         public string GetData(int value)
         {
