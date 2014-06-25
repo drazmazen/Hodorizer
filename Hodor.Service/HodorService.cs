@@ -51,6 +51,11 @@ namespace Hodor.Service
         {            
             _dehodorize = false;
 
+            if (worker.IsBusy)
+            {
+                return;
+            }
+
             context = Interception.CreateContext();
 
             Interception.SetFilter(context, Interception.IsKeyboard, Interception.Filter.KeyDown);
@@ -81,13 +86,13 @@ namespace Hodor.Service
                 
                 Interception.Send(context, device, ref stroke, 1);
                 i++;
-            }
+            }            
             Interception.DestroyContext(context);
         }
 
         public void Dehodorize()
         {            
-            _dehodorize = true;
+            _dehodorize = true;            
         }
 
 

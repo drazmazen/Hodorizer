@@ -28,13 +28,31 @@ namespace Hodor.Client
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {            
-            svc.Hodorize();
+        {
+            try
+            {
+                svc.Hodorize();
+                this.txtMessage.Text = "Victim Hodorized.";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error while Hodorizing", MessageBoxButton.OK, MessageBoxImage.Error);                
+            }
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            svc.Dehodorize();
+            try
+            {
+                svc.Dehodorize();
+                this.txtMessage.Text = "Victim Dehodorized.";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error while Dehodorizing", MessageBoxButton.OK, MessageBoxImage.Error);                
+            }
+            
         }
     }
 }
