@@ -20,6 +20,15 @@ namespace Hodor.Service
         List<ushort> hodorList = new List<ushort>() { ScanCode.H, ScanCode.O, ScanCode.D, ScanCode.O, ScanCode.R, ScanCode.Space };
         List<ushort> passKeysList = new List<ushort>() { ScanCode.Backspace, ScanCode.Enter, ScanCode.Escape, ScanCode.LeftShift, ScanCode.RightShift, ScanCode.Alt, ScanCode.Control };
 
+
+        public HodorService()
+        {
+            
+            worker.DoWork += worker_DoWork;
+        }
+
+
+
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -39,8 +48,7 @@ namespace Hodor.Service
         }
 
         public void Hodorize()
-        {
-            worker.DoWork += worker_DoWork;
+        {            
             _dehodorize = false;
 
             context = Interception.CreateContext();
