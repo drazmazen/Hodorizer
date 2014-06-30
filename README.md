@@ -1,20 +1,24 @@
 Hodorizer
 =========
-Wcf service hosted in a windows service. It intercepts all keyboard input from user and outputs 'hodor' instead. There is also a WPF client used to call the service.
+For when you want to make someone's computer able to type only the word 'hodor'. All in good fun.
+Wcf service hosted in a console application. It intercepts all keyboard input from user and outputs 'hodor' instead. There is also a WPF client used to call the service.
 
 
 ##About
 This little weekend project was actually started because I wanted to play a prank on my wife, so the code is quick and dirty without any refactoring, design patterns or best practices.
-It uses the [interception.dll](http://oblita.com/interception.html) c++ library to intercept keyboard input. See [here](https://gist.github.com/candera/1959219#file-interception-xy-cs) to see how to wrap the library with c#.
+It uses [SetWindowHookEx](http://www.pinvoke.net/default.aspx/user32.setwindowshookex) to install the hook and intercept keyboard input and [SendInput](http://www.pinvoke.net/default.aspx/user32.sendinput) to inject some Hodor into your life.
 Included folders are as follows:
  - CSharpHodor: a proof of concept console app
- - Hodor.Interception: the class library project that's just a c# wrapper for a c++ library interception.dll
+ - Hodor.Interception: the class library project that contains WinApiInputIntercept, class that's a Win Api wrapper
  - Hodor.Service: WCF service library in which the magic happens
- - Hodor.WinService: basically just a windows service which hosts the WCF service library
- - Hodor.Client: WPF application which is a client which I used to turn Hodorization on and off
+ - Hodor.WinService: basically just a windows service which hosts the WCF service library(does not work because windows services don't catch keyboard events)
+ - Hodor.Client: WPF application which is a client that is used to turn Hodorization on and off
+ - Hodor.ConsoleServiceHost: a console application that acts as host for the Hodor.Service WCF library
+ - Hodor.Scheduler: a console application that schedules the ConsoleServiceHost application to be started on user logon
+ - Hodor.ServiceInstaller: installer for the ConsoleServiceHost. Also triggers the scheduler at the end of installation. Needs to be run as administrator
 
 ##Quick How To
-For the interception.dll to be usable, interception library's core needs to be installed on the computer. According to the [author's site](http://oblita.com/interception.html),  install-interception.exe needs to be downloaded and installed from an admin command prompt.
-After you're done with the interception library, open the solution in Visual Studio(I used 2013, did not try other versions) and rebuild. This will generate /Hodor.WinService/bin/Debug folder and its content. Here, you will find a 64 bit InstallUtil.exe file. To install the windows service, you need to open Comman Prompt, go to /Hodor.WinService/bin/Debug folder and type:
-InstallUtil Hodor.WinService.exe. This will install the service, but will not start it. You can start it from the Computer Management app.
+*Note: I have tested the application only on a 64 bit Windows 7.*
+
+After building the solution in the Visual Studio, Hodor.ServiceInstaller folder will contain the installer for the service. It needs to be run as administrator. It will install Hodor.ConsoleServiceHost and schedule it to be started when the user logs on. 
 
