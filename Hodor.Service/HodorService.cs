@@ -1,98 +1,36 @@
-﻿using Hodor.Libraries.CSharpHodor;
+﻿using Hodor.Libraries;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Hodor.Service
 {
     public class HodorService : IHodorService
     {
-        BackgroundWorker worker = new BackgroundWorker();
-        IntPtr context;
-        private static bool _dehodorize = false;
-        int device;
-        Interception.Stroke stroke = new Interception.Stroke();
-        List<ushort> hodorList = new List<ushort>() { ScanCode.H, ScanCode.O, ScanCode.D, ScanCode.O, ScanCode.R, ScanCode.Space };
-        List<ushort> passKeysList = new List<ushort>() { ScanCode.Backspace, ScanCode.Enter, ScanCode.Escape, ScanCode.LeftShift, ScanCode.RightShift, ScanCode.Alt, ScanCode.Control };
-
-
-        public HodorService()
-        {
-            
-            worker.DoWork += worker_DoWork;
-        }
-
-
-
-        public string GetData(int value)
-        {
-            return string.Format("You entered: {0}", value);
-        }
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
-        }
+        private static IntPtr _hook = IntPtr.Zero;
+        private static WinApiInputIntercept _interceptor = new WinApiInputIntercept();       
 
         public void Hodorize()
-        {            
-            _dehodorize = false;
-
-            if (worker.IsBusy)
-            {
-                return;
-            }
-
-            context = Interception.CreateContext();
-
-            Interception.SetFilter(context, Interception.IsKeyboard, Interception.Filter.KeyDown);
-
-            worker.RunWorkerAsync();
-            
-        }
-
-        void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            int i = 0;
-            while (Interception.Receive(context, device = Interception.Wait(context), ref stroke, 1) > 0)
-            {
-                if (_dehodorize)
+            Task.Run(() =>
                 {
-                    Interception.Send(context, device, ref stroke, 1);
-                    break;
+                    _hook = _interceptor.SetHook();
+                    Application.Run();
+                    _interceptor.Unhook(_hook);
                 }
-
-                if (!passKeysList.Contains(stroke.key.code))
-                {
-                    stroke.key.code = hodorList[i % 6];                    
-                }
-                else
-                {
-                    i = 5;
-                }
-                
-                Interception.Send(context, device, ref stroke, 1);
-                i++;
-            }            
-            Interception.DestroyContext(context);
+                );            
         }
 
         public void Dehodorize()
         {            
-            _dehodorize = true;            
+            Application.Exit();
         }
 
 
