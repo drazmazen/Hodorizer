@@ -1,7 +1,7 @@
 Hodorizer
 =========
-For when you want to make someone's computer able to type only the word 'hodor'. All in good fun.
-Wcf service hosted in a console application. It intercepts all keyboard input from user and outputs 'hodor' instead. There is also a WPF client used to call the service.
+An application for when you want to make someone's computer able to type __only__ the word *'hodor'*, all in good fun.
+Server side is a Wcf service hosted in a console application. It intercepts all keyboard input from user and outputs 'hodor' instead. There is also a WPF client used to call the service.
 
 
 ##About
