@@ -27,7 +27,7 @@ namespace Hodor.Client
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonHodorize_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace Hodor.Client
             
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ButtonDehodorize_Click(object sender, RoutedEventArgs e)
         {
             try
             {

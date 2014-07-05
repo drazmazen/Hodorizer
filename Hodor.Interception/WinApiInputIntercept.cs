@@ -60,7 +60,6 @@ namespace Hodor.Libraries
             {
                 int vkCode = Marshal.ReadInt32(lParam);
                 SendInput((int)_hodor[_index % 6]);
-                //Console.WriteLine((VirtualKeyShort)vkCode);
                 _index++;
             }
             return (IntPtr)1;            
@@ -94,14 +93,6 @@ namespace Hodor.Libraries
 
         public IntPtr SetHook()
         {
-            //using (Process curProcess = Process.GetCurrentProcess())
-            //using (ProcessModule curModule = curProcess.MainModule)
-            //{
-            //    var mod = System.Reflection.Assembly.GetAssembly(typeof(WinApiInputIntercept)).ManifestModule.Name;
-            //    return SetWindowsHookEx(WH_KEYBOARD_LL, _proc,
-            //    GetModuleHandle("Hodor.Libraries.dll"), 0);
-            //}
-
             return SetWindowsHookEx(WH_KEYBOARD_LL, _proc,
                 IntPtr.Zero, 0);
         }

@@ -4,10 +4,10 @@
         Title="MainWindow" Height="150" Width="471">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <Button Click="Button_Click" Margin="8">
+            <Button Click="ButtonHodorize_Click" Margin="8">
                 Hodorize
             </Button>
-            <Button Click="Button_Click_1" Margin="8">
+            <Button Click="ButtonDehodorize_Click" Margin="8">
                 Dehodorize
             </Button>
             <TextBlock x:Name="txtMessage" HorizontalAlignment="Center" FontWeight="Bold" Foreground="Red" />

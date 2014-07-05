@@ -12,13 +12,13 @@ namespace Hodor.Console
 {
     class Program
     {        
-        private static IntPtr hook = IntPtr.Zero;
+        private static IntPtr _hook = IntPtr.Zero;
         private static WinApiInputIntercept _interceptor = new WinApiInputIntercept();
         static void Main(string[] args)
         {
-            hook = _interceptor.SetHook();
+            _hook = _interceptor.SetHook();
             Application.Run();
-            _interceptor.Unhook(hook);
+            _interceptor.Unhook(_hook);
         }
     }
 }
