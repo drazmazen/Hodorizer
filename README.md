@@ -11,7 +11,7 @@ Included folders are as follows:
  - CSharpHodor: a proof of concept console app
  - Hodor.Interception: the class library project that contains WinApiInputIntercept, class that's a Win Api wrapper
  - Hodor.Service: WCF service library in which the magic happens
- - Hodor.WinService: basically just a windows service which hosts the WCF service library(does not work because windows services don't catch keyboard events)
+ - Hodor.WinService: basically just a windows service which hosts the WCF service library(__does not work__ because windows services don't catch keyboard events)
  - Hodor.Client: WPF application which is a client that is used to turn Hodorization on and off
  - Hodor.ConsoleServiceHost: a console application that acts as host for the Hodor.Service WCF library
  - Hodor.Scheduler: a console application that schedules the ConsoleServiceHost application to be started on user logon
