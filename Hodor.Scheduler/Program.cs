@@ -40,7 +40,7 @@ namespace Hodor.Scheduler
                 //create path 
                 var pathToExecutable = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Hodor.ConsoleServiceHost.exe");
 
-                // Create an action that will launch Notepad whenever the trigger fires
+                // Create an action that will launch the service host whenever the trigger fires
                 td.Actions.Add(new ExecAction(pathToExecutable));
 
                 // Register the task in the root folder
