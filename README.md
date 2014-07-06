@@ -21,4 +21,4 @@ Included folders are as follows:
 *Note: I have tested the application only on a 64 bit Windows 7.*
 
 After building the solution in the Visual Studio, Hodor.ServiceInstaller folder will contain the installer for the service. It needs to be run as administrator. It will install Hodor.ConsoleServiceHost and schedule it to be started when the user logs on. 
-
+I have writen more about the making of Hodorizer [here](http://drazmazen.github.io/coding-shenanigans-and-a-little-bit-of-Hodor/).
